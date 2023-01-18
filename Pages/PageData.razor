@@ -1,0 +1,30 @@
+﻿@page "/pagedata"
+@using Infrastructuur.Dtos;
+@using Infrastructuur.Models;
+@using WebScrapperPdf.Components
+@using WebScrapperPdf.Services.Interfaces;
+
+<h3>@title</h3>
+
+<EditForm Model="@Website" OnSubmit="@HandleSubmit">
+    <InputText id="Title" @bind-Value="Website.Url" />
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+
+    @foreach (var item in Data)
+    {
+        @if (item is not null)
+        {
+            <TableComponent Items="@item" TheKey="@item.FirstOrDefault().Key" />
+        }
+    }
+
+@code {
+   
+    //protected override async Task OnInitializedAsync()
+    //{
+
+    //}
+}

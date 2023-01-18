@@ -1,0 +1,16 @@
+﻿.table-content-hide {
+    display: none;
+}
+.table-content-show {
+    display: block;
+}
+.tag {
+    cursor: pointer;
+    background-color: lightcyan;
+    color: black;
+    border-radius: 0.2em;
+}
+
+.selected-value, .selected-key {
+    background-color: lightgreen;
+}

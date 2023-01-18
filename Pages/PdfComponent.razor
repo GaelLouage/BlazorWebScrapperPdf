@@ -1,0 +1,28 @@
+﻿@page "/pdf"
+@using Infrastructuur.Pdfs;
+@using WebScrapperPdf.Services.Interfaces;
+@inject IJSRuntime JS
+<h3>PdfComponent</h3>
+<button @onclick="@DownloadPdfFile">Download the pdf</button>
+<div class="page">
+    <div>
+        <!--contents and data of pdf file-->
+        <h3>Content</h3>
+        @foreach (var item in Pdf.File.Content)
+        {
+            <p>@item.Key   @item.Value</p>
+        }
+    </div>
+    <!--the file-->
+    <div>
+        <div>
+
+        </div>
+    </div>
+</div>
+
+
+@code {
+
+ 
+}

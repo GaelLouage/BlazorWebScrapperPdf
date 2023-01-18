@@ -1,0 +1,16 @@
+.table-content-hide[b-t9vmdbt8i0] {
+    display: none;
+}
+.table-content-show[b-t9vmdbt8i0] {
+    display: block;
+}
+.tag[b-t9vmdbt8i0] {
+    cursor: pointer;
+    background-color: lightcyan;
+    color: black;
+    border-radius: 0.2em;
+}
+
+.selected-value[b-t9vmdbt8i0], .selected-key[b-t9vmdbt8i0] {
+    background-color: lightgreen;
+}

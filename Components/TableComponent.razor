@@ -1,0 +1,33 @@
+﻿@using Infrastructuur.Models;
+@using Infrastructuur.Pdfs;
+<h2 class="tag" @onclick="@DisplayTable">@GetHtmlNode()</h2>
+<table class="table @TableContent">
+    <thead>
+        <tr>
+            <th scope="col">Key</th>
+            <th scope="col">Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Items)
+        {
+            <tr>
+                @if (Pdf.File.Content.ContainsKey(item.Key) || Pdf.File.Hrefs.ContainsKey(item.Key) || Pdf.File.Images.ContainsKey(item.Key))
+                {
+                    <td class="selected-key">@item.Key</td>
+                    <td class="selected-value">@item.Value</td>
+                    <td @onclick="() => Remove(item)"><button class="btn btn-primary w-100">Remove</button></td>
+                }
+                else
+                {
+                    <td>@item.Key</td>
+                    <td>@item.Value</td>
+                    <td @onclick="() => AddItem(item)"><button class="btn btn-primary w-100">Add</button></td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+@code {
+  
+}
