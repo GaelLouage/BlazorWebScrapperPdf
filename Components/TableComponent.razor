@@ -12,7 +12,9 @@
         @foreach (var item in Items)
         {
             <tr>
-                @if (Pdf.File.Content.ContainsKey(item.Key) || Pdf.File.Hrefs.ContainsKey(item.Key) || Pdf.File.Images.ContainsKey(item.Key))
+                @if (Pdf.File.Content.Any(x => x.Key == item.Key) ||
+                    Pdf.File.Hrefs.Any(x => x.Key == item.Key) || 
+                    Pdf.File.Images.Any(x => x.Key == item.Key))
                 {
                     <td class="selected-key">@item.Key</td>
                     <td class="selected-value">@item.Value</td>

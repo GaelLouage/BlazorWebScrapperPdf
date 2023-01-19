@@ -1,5 +1,6 @@
 ﻿using Infrastructuur.Dtos;
 using Infrastructuur.Models;
+using Infrastructuur.Pdfs;
 using Microsoft.AspNetCore.Components;
 using WebScrapperPdf.Services.Interfaces;
 
@@ -19,7 +20,11 @@ namespace WebScrapperPdf.Pages
         public List<string> ButtonList { get; set; } = new List<string>();
         private async Task HandleSubmit()
         {
-            Data.Clear();
+            Pdf.File.Images.Clear();
+            Pdf.File.Hrefs.Clear();
+            Pdf.File.Content.Clear();
+            Pdf.File.Title = string.Empty;
+            Data = new List<Dictionary<string, string>>();
             title = Website.Url;
             Result = (await DataService.GetDataByTitleAsync(Website.Url));
 

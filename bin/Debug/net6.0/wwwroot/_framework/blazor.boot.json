@@ -197,15 +197,15 @@
       "mscorlib.dll": "sha256-cx\/3nJhFns3tZhQNQOyiRyKJESKxOjLVufzWnri6KSA=",
       "netstandard.dll": "sha256-yWufW5W4SSfjocBcWTEDqnFwTd\/VYtLMc2Y9mPmlggc=",
       "System.Private.CoreLib.dll": "sha256-H009wzPwRoDZlwvpN4KLCsUwN7Y1AmjKB3PIEHA7ObQ=",
-      "Infrastructuur.dll": "sha256-NEP6ECQQ6xqH6\/m1AjVa\/2vG5QLVwI8vPpQsYDedViY=",
-      "WebScrapperPdf.dll": "sha256-z0qfJUNLL1jzRS59ZdnOSQDz0CkkoRFdZj3tVEibWgo="
+      "Infrastructuur.dll": "sha256-3E73f1GKPaIN1bBGQSQawZ0lTdPTR\/KgqWZHtY+XPo4=",
+      "WebScrapperPdf.dll": "sha256-o\/l+72nPdlcCn9EM1hp3LMEYJQqZYnYpWZnqHPTaI\/w="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "Infrastructuur.pdb": "sha256-kr05ymZPLSq2cixK2LpsjGwqpqFdXdYxq409Y9aGPIA=",
-      "WebScrapperPdf.pdb": "sha256-z442bGKwYZ94QkN69q0N+3pY\/xTbCD3dbtfrjN6qam8="
+      "Infrastructuur.pdb": "sha256-4nPaMeylZBb8Z9KFJ7lS3imAiXH5cqtWP+Y+1gnxwsI=",
+      "WebScrapperPdf.pdb": "sha256-SqxMyw3uP3Y6V41Gn\/SffGTfns0MXOje3zGKd2SW3Lg="
     },
     "runtime": {
       "dotnet.6.0.11.99uc1qal6h.js": "sha256-F30V+6jU3jwJYFZoLuwMAqzTiOXu6q7zGgOdjYBofDI=",
