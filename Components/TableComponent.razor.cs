@@ -1,4 +1,5 @@
 ﻿using Infrastructuur.Dtos;
+using Infrastructuur.Extensions;
 using Infrastructuur.Models;
 using Infrastructuur.Pdfs;
 using Microsoft.AspNetCore.Components;
@@ -8,6 +9,8 @@ namespace WebScrapperPdf.Components
 {
     public partial class TableComponent : ComponentBase
     {
+        [Inject]
+        public IDataService DataService { get; set; }
         [Parameter]
         public Dictionary<string, string>? Items { get; set; } = new Dictionary<string, string>();
 
@@ -31,7 +34,7 @@ namespace WebScrapperPdf.Components
                 TableContent = "table-content-hide";
             }
         }
-        public void AddItem(KeyValuePair<string, string> item)
+        public async Task AddItemAsync(KeyValuePair<string, string> item)
         {
             if (item.Key.StartsWith("img"))
             {
@@ -49,8 +52,10 @@ namespace WebScrapperPdf.Components
             {
                 Pdf.File.Content.Add(new PdfContent<string, string> { Key = item.Key, Value = item.Value });
             }
+            Pdf.File.TheFileBase64 = await DataService.DownloadPdfFileAsync(Pdf.File).GetBase64String();
         }
-        public void Remove(KeyValuePair<string, string> item)
+     
+        public async Task RemoveAsync(KeyValuePair<string, string> item)
         {
             PdfContent<string, string> pdf = new PdfContent<string, string> { Key = item.Key, Value = item.Value };
             if (item.Key.StartsWith("img"))
@@ -89,6 +94,7 @@ namespace WebScrapperPdf.Components
                     }
                 }
             }
+            Pdf.File.TheFileBase64 = await DataService.DownloadPdfFileAsync(Pdf.File).GetBase64String();
         }
     }
 }

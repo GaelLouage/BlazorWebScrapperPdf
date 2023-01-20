@@ -18,13 +18,13 @@
                 {
                     <td class="selected-key">@item.Key</td>
                     <td class="selected-value">@item.Value</td>
-                    <td @onclick="() => Remove(item)"><button class="btn btn-primary w-100">Remove</button></td>
+                    <td @onclick="() => RemoveAsync(item)"><button class="btn btn-primary w-100">Remove</button></td>
                 }
                 else
                 {
                     <td>@item.Key</td>
                     <td>@item.Value</td>
-                    <td @onclick="() => AddItem(item)"><button class="btn btn-primary w-100">Add</button></td>
+                    <td @onclick="() => AddItemAsync(item)"><button class="btn btn-primary w-100">Add</button></td>
                 }
             </tr>
         }

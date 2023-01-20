@@ -1,3 +1,17 @@
 .page[b-vmfx5v6145] {
-    display:flex;
+    display:grid;
+    grid-template-columns: 16em 2fr;
+}
+object[b-vmfx5v6145] {
+  
+}
+embed[b-vmfx5v6145] {
+    width: 100%;
+    height: 45em;
+}
+.display-form-true[b-vmfx5v6145] {
+    display:block;
+}
+.display-form-false[b-vmfx5v6145] {
+    display:none;
 }

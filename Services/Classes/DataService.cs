@@ -14,7 +14,7 @@ namespace WebScrapperPdf.Services.Classes
     public class DataService : IDataService
     {
         private readonly HttpClient _httpClient;
-   
+        
         public DataService(HttpClient httpClient)
         {
             _httpClient = httpClient;

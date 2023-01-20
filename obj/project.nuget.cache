@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4lhN+Xlvty0Dcs2Yy3tNM9JQC1SdPJPMpXCmZ6JlSmAuSkUuKhe+nzTNydfA+czjuSthYvNTvJHiBYxWwE2QYg==",
+  "dgSpecHash": "0LPqISF3WMYKS5lneebT8qu/Fsf0un5Aamcj82sA8sPbvCyvUW7owHbPU6XgLXz3OHH89Dhph5iHSnyUva92oQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\louagga\\source\\repos\\WeScrapperPdf\\WebScrapperPdf\\WebScrapperPdf.csproj",
   "expectedPackageFiles": [
@@ -29,6 +29,10 @@
     "C:\\Users\\louagga\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
     "C:\\Users\\louagga\\.nuget\\packages\\microsoft.jsinterop\\6.0.10\\microsoft.jsinterop.6.0.10.nupkg.sha512",
     "C:\\Users\\louagga\\.nuget\\packages\\microsoft.jsinterop.webassembly\\6.0.10\\microsoft.jsinterop.webassembly.6.0.10.nupkg.sha512",
+    "C:\\Users\\louagga\\.nuget\\packages\\pdfsharpcore\\1.3.43\\pdfsharpcore.1.3.43.nupkg.sha512",
+    "C:\\Users\\louagga\\.nuget\\packages\\sharpziplib\\1.3.3\\sharpziplib.1.3.3.nupkg.sha512",
+    "C:\\Users\\louagga\\.nuget\\packages\\sixlabors.fonts\\1.0.0-beta17\\sixlabors.fonts.1.0.0-beta17.nupkg.sha512",
+    "C:\\Users\\louagga\\.nuget\\packages\\sixlabors.imagesharp\\1.0.4\\sixlabors.imagesharp.1.0.4.nupkg.sha512",
     "C:\\Users\\louagga\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "C:\\Users\\louagga\\.nuget\\packages\\system.io.pipelines\\6.0.3\\system.io.pipelines.6.0.3.nupkg.sha512",
     "C:\\Users\\louagga\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",

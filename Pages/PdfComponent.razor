@@ -1,28 +1,133 @@
 ﻿@page "/pdf"
 @using Infrastructuur.Pdfs;
+@using PdfSharpCore.Drawing;
 @using WebScrapperPdf.Services.Interfaces;
 @inject IJSRuntime JS
 <h3>PdfComponent</h3>
-<button @onclick="@DownloadPdfFile">Download the pdf</button>
+@*<button @onclick="@DownloadPdfFile">Download the pdf</button>*@
 <div class="page">
     <div>
         <!--contents and data of pdf file-->
         <h3>Content</h3>
+        <EditForm class="form" Model="Pdf.File" OnValidSubmit="HandleValidSubmit">
+            
+     
         @foreach (var item in Pdf.File.Content)
         {
-            <p>@item.Key   @item.Value</p>
+                <p class="btn btn-primary" @onclick="() => DisplayForm(item.Key,nameof(Pdf.File.Content).ToString())">@item.Key</p>
+                @if(item.IsClicked){
+                    <div>
+
+                        @*posx*@
+                        <div class="form-label-group">
+                            <label>X-axis</label>
+                            <InputNumber class="form-control" @bind-Value="@item.PosX" />
+                            <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => item.PosX)" />
+                        </div>
+
+                        @*posy*@
+                        <div class="form-label-group">
+                            <label>Y-axis</label>
+                            <InputNumber class="form-control" @bind-Value="@item.PosY" />
+                            <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => item.PosY)" />
+                        </div>
+
+                        @*width*@
+                        <div class="form-label-group">
+                            <label>Width</label>
+                            <InputNumber class="form-control" @bind-Value="@item.Width" />
+                            <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => item.Width)" />
+                        </div>
+
+                        @*height*@
+                        <div class="form-label-group">
+                            <label>Height</label>
+                            <InputNumber class="form-control" @bind-Value="@item.Height" />
+                            <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => item.Height)" />
+                        </div>
+
+                        @*fontSize*@
+                        <div class="form-label-group">
+                            <label>Height</label>
+                            <InputNumber class="form-control" @bind-Value="@item.FontSize" />
+                            <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => item.FontSize)" />
+                        </div>
+
+                        @*fontstyle*@
+                        <select @bind="@item.FontStyle">
+                            @foreach (var fontStyle in FontStyles)
+                            {
+                                <option value="@fontStyle">@fontStyle</option>
+                            }
+                        </select>
+
+                        @*fontFamilies*@
+                        <select @bind="@item.FontFamily">
+                            @foreach (var fontFamily in FontFamilies)
+                            {
+                                <option value="@fontFamily">@fontFamily</option>
+                            }
+                        </select>
+                        @*
+                @*XBrushesText
+                <select @bind="@item.BrushText">
+                @foreach (var brush in Brushes)
+                {
+                <option typeof="XSolidBrush" value="@brush">@brush</option>
+                }
+                </select>
+                *@
+                    </div>
+                }
+               
         }
+            @if(Pdf.File.Images is not null)
+            {
+                @foreach (var img in Pdf.File.Images)
+                {
+
+                    <p class="btn btn-primary" @onclick="() => DisplayForm(img.Key, nameof(Pdf.File.Images).ToString())">@img.Key</p>
+                    @if (img.IsClicked)
+                    {
+                        <div>
+                            @*posx*@
+                            <div>
+                                <label>X-axis</label>
+                                <InputNumber class="form-control" @bind-Value="@img.PosX" />
+                                <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => img.PosX)" />
+                            </div>
+
+                            @*posy*@
+                            <div class="form-label-group">
+                                <label>Y-axis</label>
+                                <InputNumber class="form-control" @bind-Value="@img.PosY" />
+                                <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => img.PosY)" />
+                            </div>
+                        </div>
+                    }
+                    
+                }
+            }
+          
+            <button class="btn w-100 mt-2 mb-2 btn-primary" type="submit">SubmitChanges</button>
+        </EditForm>
+
     </div>
     <!--the file-->
     <div>
         <div>
-
+            @if(!string.IsNullOrEmpty(Pdf.File.TheFileBase64))
+            {
+                <object>
+                    <embed id="pdfID" type="text/pdf" src="data:application/pdf;base64,@Pdf.File.TheFileBase64" />
+                </object>
+            }
         </div>
     </div>
 </div>
 
 
 @code {
+   
 
- 
 }

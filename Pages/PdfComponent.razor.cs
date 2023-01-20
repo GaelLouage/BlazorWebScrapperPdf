@@ -1,6 +1,9 @@
-﻿using Infrastructuur.Pdfs;
+﻿using Infrastructuur.Extensions;
+using Infrastructuur.Pdfs;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using PdfSharpCore.Drawing;
+using System.Net.Mime;
 using WebScrapperPdf.Services.Interfaces;
 
 namespace WebScrapperPdf.Pages
@@ -9,12 +12,60 @@ namespace WebScrapperPdf.Pages
     {
         [Inject]
         public IDataService DataService { get; set; }
-       
-        public async Task DownloadPdfFile()
+        public List<XFontStyle> FontStyles = new List<XFontStyle>() {
+            XFontStyle.Bold,
+            XFontStyle.Italic,
+            XFontStyle.Underline,
+            XFontStyle.Strikeout,
+            XFontStyle.Regular,
+            XFontStyle.BoldItalic,
+        };
+   
+
+        public List<string> FontFamilies = new List<string>()
         {
-
-            await JS.InvokeVoidAsync("saveAsFile", "tst", await DataService.DownloadPdfFileAsync(Pdf.File));
-
+            "Arial", "Times New Roman","Verdana","Rockwell","Franklin Gothic","Univers","Frutiger","Avenir"
+        };
+        public List<XSolidBrush> Brushes = new List<XSolidBrush>
+        {
+           new XSolidBrush(XColors.AliceBlue),
+           new XSolidBrush(XColors.Black)
+    };
+        public async Task UpdateFile()
+        {
+            Pdf.File.TheFileBase64 = await DataService.DownloadPdfFileAsync(Pdf.File).GetBase64String();
+        }
+        protected async Task HandleValidSubmit()
+        {
+            Pdf.File.TheFileBase64 = await DataService.DownloadPdfFileAsync(Pdf.File).GetBase64String();
+        }
+        public void DisplayForm(string keyPressed, string nameOfProperty)
+        {
+            switch (nameOfProperty)
+            {
+                case nameof(Pdf.File.Images):
+                    var dataImages = Pdf.File.Images.FirstOrDefault(x=> x.Key== keyPressed);
+                    if(dataImages is not null)
+                    {
+                        dataImages.IsClicked = !dataImages.IsClicked;
+                    }
+                    break;
+                case nameof(Pdf.File.Content):
+                    var dataContent = Pdf.File.Content.FirstOrDefault(x => x.Key == keyPressed);
+                    if (dataContent is not null)
+                    {
+                        Pdf.File.Content.FirstOrDefault(x => x.Key == keyPressed).IsClicked = !Pdf.File.Content.FirstOrDefault(x => x.Key == keyPressed).IsClicked;
+                    }
+                    break;
+                case nameof(Pdf.File.Hrefs):
+                    var dataHrefs = Pdf.File.Hrefs.FirstOrDefault(x => x.Key == keyPressed);
+                    if (dataHrefs is not null)
+                    {
+                        dataHrefs.IsClicked = !dataHrefs.IsClicked;
+                    }
+                    break;
+            }
+           
         }
     }
 }

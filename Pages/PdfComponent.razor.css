@@ -1,3 +1,17 @@
 ﻿.page {
-    display:flex;
+    display:grid;
+    grid-template-columns: 16em 2fr;
+}
+object {
+  
+}
+embed {
+    width: 100%;
+    height: 45em;
+}
+.display-form-true {
+    display:block;
+}
+.display-form-false {
+    display:none;
 }
