@@ -10,12 +10,13 @@
         <!--contents and data of pdf file-->
         <h3>Content</h3>
         <EditForm class="form" Model="Pdf.File" OnValidSubmit="HandleValidSubmit">
-            
-     
-        @foreach (var item in Pdf.File.Content)
-        {
+
+
+            @foreach (var item in Pdf.File.Content)
+            {
                 <p class="btn btn-primary" @onclick="() => DisplayForm(item.Key,nameof(Pdf.File.Content).ToString())">@item.Key</p>
-                @if(item.IsClicked){
+                @if (item.IsClicked)
+                {
                     <div>
 
                         @*posx*@
@@ -48,40 +49,57 @@
 
                         @*fontSize*@
                         <div class="form-label-group">
-                            <label>Height</label>
+                            <label>FontSize</label>
                             <InputNumber class="form-control" @bind-Value="@item.FontSize" />
                             <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => item.FontSize)" />
                         </div>
 
                         @*fontstyle*@
-                        <select @bind="@item.FontStyle">
-                            @foreach (var fontStyle in FontStyles)
-                            {
-                                <option value="@fontStyle">@fontStyle</option>
-                            }
-                        </select>
+                        <div class="form-label-group">
+                            <label>FontStyle</label>
+                            <select @bind="@item.FontStyle">
+                                @foreach (var fontStyle in FontStyles)
+                                {
+                                    <option value="@fontStyle">@fontStyle</option>
+                                }
+                            </select>
+                        </div>
 
                         @*fontFamilies*@
-                        <select @bind="@item.FontFamily">
-                            @foreach (var fontFamily in FontFamilies)
-                            {
-                                <option value="@fontFamily">@fontFamily</option>
-                            }
-                        </select>
-                        @*
-                @*XBrushesText
-                <select @bind="@item.BrushText">
-                @foreach (var brush in Brushes)
-                {
-                <option typeof="XSolidBrush" value="@brush">@brush</option>
-                }
-                </select>
-                *@
+                        <div class="form-label-group">
+                            <label>FontFamilies</label>
+                            <select @bind="@item.FontFamily">
+                                @foreach (var fontFamily in FontFamilies)
+                                {
+                                    <option value="@fontFamily">@fontFamily</option>
+                                }
+                            </select>
+                        </div>
+                        @**XBrushesText*@
+                        <div class="form-label-group">
+                            <label>Rectangle Color</label>
+                            <select @bind="@item.RectangleColor">
+                                @foreach (var brush in Brushes)
+                                {
+                                    <option value="@brush">@brush</option>
+                                }
+                            </select>
+                        </div>
+
+                        @**XBrushesText*@
+                        <div class="form-label-group">
+                            <label>Text Color</label>
+                            <select @bind="@item.BrushTextColor">
+                                @foreach (var brush in Brushes)
+                                {
+                                    <option value="@brush">@brush</option>
+                                }
+                            </select>
+                        </div>
                     </div>
                 }
-               
-        }
-            @if(Pdf.File.Images is not null)
+            }
+            @if (Pdf.File.Images is not null)
             {
                 @foreach (var img in Pdf.File.Images)
                 {
@@ -105,10 +123,10 @@
                             </div>
                         </div>
                     }
-                    
+
                 }
             }
-          
+
             <button class="btn w-100 mt-2 mb-2 btn-primary" type="submit">SubmitChanges</button>
         </EditForm>
 
@@ -116,7 +134,7 @@
     <!--the file-->
     <div>
         <div>
-            @if(!string.IsNullOrEmpty(Pdf.File.TheFileBase64))
+            @if (!string.IsNullOrEmpty(Pdf.File.TheFileBase64))
             {
                 <object>
                     <embed id="pdfID" type="text/pdf" src="data:application/pdf;base64,@Pdf.File.TheFileBase64" />
@@ -128,6 +146,6 @@
 
 
 @code {
-   
+
 
 }

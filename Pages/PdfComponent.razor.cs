@@ -26,11 +26,14 @@ namespace WebScrapperPdf.Pages
         {
             "Arial", "Times New Roman","Verdana","Rockwell","Franklin Gothic","Univers","Frutiger","Avenir"
         };
-        public List<XSolidBrush> Brushes = new List<XSolidBrush>
+        public List<string> Brushes = new List<string>
         {
-           new XSolidBrush(XColors.AliceBlue),
-           new XSolidBrush(XColors.Black)
-    };
+            "Black", 
+            "White",
+            "Red",
+            "Green",
+            "Blue"
+         };
         public async Task UpdateFile()
         {
             Pdf.File.TheFileBase64 = await DataService.DownloadPdfFileAsync(Pdf.File).GetBase64String();

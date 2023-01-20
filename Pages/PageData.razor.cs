@@ -10,8 +10,8 @@ namespace WebScrapperPdf.Pages
     {
 
         [Inject]
-        public  IDataService DataService { get; set; }
-        
+        public IDataService DataService { get; set; }
+
         public ResultDto Result { get; set; } = new ResultDto();
         public static List<Dictionary<string, string>> Data = new List<Dictionary<string, string>>();
         public WebsiteEntity Website { get; set; } = new WebsiteEntity();
@@ -20,37 +20,41 @@ namespace WebScrapperPdf.Pages
         public List<string> ButtonList { get; set; } = new List<string>();
         private async Task HandleSubmit()
         {
+
             Pdf.File.Images.Clear();
             Pdf.File.Hrefs.Clear();
             Pdf.File.Content.Clear();
             Pdf.File.Title = string.Empty;
             Data = new List<Dictionary<string, string>>();
-            title = Website.Url;
-            Result = (await DataService.GetDataByTitleAsync(Website.Url));
-
-            Result.Data = Result.Data
-             .OrderBy(x => x.Key)
-            .ToDictionary(x => x.Key, x => x.Value);
-            var dictionaryToAdd = new Dictionary<string, string>();
-            int cc = 0;
-            foreach (var node in HtmlTag.htmlNodes)
+            if (!string.IsNullOrEmpty(Website.Url))
             {
-                foreach (var item in Result.Data)
-                {
-                    if (item.Key.Contains(node))
-                    {
+                title = Website.Url;
+                Result = (await DataService.GetDataByTitleAsync(Website.Url));
 
-                        dictionaryToAdd.Add(node + "-" + cc, item.Value);
+                Result.Data = Result.Data
+                 .OrderBy(x => x.Key)
+                .ToDictionary(x => x.Key, x => x.Value);
+                var dictionaryToAdd = new Dictionary<string, string>();
+                int cc = 0;
+                foreach (var node in HtmlTag.htmlNodes)
+                {
+                    foreach (var item in Result.Data)
+                    {
+                        if (item.Key.Contains(node))
+                        {
+
+                            dictionaryToAdd.Add(node + "-" + cc, item.Value);
+                        }
+                        cc++;
                     }
-                    cc++;
+                    Data.Add(dictionaryToAdd);
+                    cc = 0;
+                    dictionaryToAdd = new Dictionary<string, string>();
                 }
-                Data.Add(dictionaryToAdd);
-                cc = 0;
-                dictionaryToAdd = new Dictionary<string, string>();
+                ButtonList = Result.Data.Select(x => x.Key)
+                    .Distinct()
+                    .ToList();
             }
-            ButtonList = Result.Data.Select(x => x.Key)
-                .Distinct()
-                .ToList();
         }
     }
 }
