@@ -3,18 +3,24 @@
 @using PdfSharpCore.Drawing;
 @using WebScrapperPdf.Services.Interfaces;
 @inject IJSRuntime JS
-<h3>PdfComponent</h3>
+<h3>Pdf File</h3>
 @*<button @onclick="@DownloadPdfFile">Download the pdf</button>*@
 <div class="page">
     <div>
         <!--contents and data of pdf file-->
-        <h3>Content</h3>
         <EditForm class="form" Model="Pdf.File" OnValidSubmit="HandleValidSubmit">
-
-
+            <div>
+                @foreach (var content in Pdf.File.Content)
+                {
+                    <p class="btn btn-primary" @onclick="() => DisplayForm(content.Key,nameof(Pdf.File.Content).ToString())">@content.Key</p>
+                }
+                @foreach (var img in Pdf.File.Images)
+                {
+                    <p class="btn btn-primary" @onclick="() => DisplayForm(img.Key, nameof(Pdf.File.Images).ToString())">@img.Key</p>
+                }
+            </div>
             @foreach (var item in Pdf.File.Content)
             {
-                <p class="btn btn-primary" @onclick="() => DisplayForm(item.Key,nameof(Pdf.File.Content).ToString())">@item.Key</p>
                 @if (item.IsClicked)
                 {
                     <div>
@@ -50,7 +56,7 @@
                         @*fontSize*@
                         <div class="form-label-group">
                             <label>FontSize</label>
-                            <InputNumber class="form-control" @bind-Value="@item.FontSize" />
+                            <InputNumber class="form-control" step="0.1" @bind-Value="@item.FontSize" />
                             <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => item.FontSize)" />
                         </div>
 
@@ -103,8 +109,6 @@
             {
                 @foreach (var img in Pdf.File.Images)
                 {
-
-                    <p class="btn btn-primary" @onclick="() => DisplayForm(img.Key, nameof(Pdf.File.Images).ToString())">@img.Key</p>
                     @if (img.IsClicked)
                     {
                         <div>
@@ -127,7 +131,7 @@
                 }
             }
 
-            <button class="btn w-100 mt-2 mb-2 btn-primary" type="submit">SubmitChanges</button>
+            <button class="btn w-100 mt-2 mb-2 btn-primary" type="submit">Submit Changes</button>
         </EditForm>
 
     </div>

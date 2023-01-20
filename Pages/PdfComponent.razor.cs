@@ -1,4 +1,5 @@
 ﻿using Infrastructuur.Extensions;
+using Infrastructuur.Models;
 using Infrastructuur.Pdfs;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
@@ -44,6 +45,9 @@ namespace WebScrapperPdf.Pages
         }
         public void DisplayForm(string keyPressed, string nameOfProperty)
         {
+            Pdf.File.Images.ResetItems();
+            Pdf.File.Content.ResetItems();
+            Pdf.File.Hrefs.ResetItems();
             switch (nameOfProperty)
             {
                 case nameof(Pdf.File.Images):
@@ -57,7 +61,7 @@ namespace WebScrapperPdf.Pages
                     var dataContent = Pdf.File.Content.FirstOrDefault(x => x.Key == keyPressed);
                     if (dataContent is not null)
                     {
-                        Pdf.File.Content.FirstOrDefault(x => x.Key == keyPressed).IsClicked = !Pdf.File.Content.FirstOrDefault(x => x.Key == keyPressed).IsClicked;
+                        dataContent.IsClicked = !dataContent.IsClicked;
                     }
                     break;
                 case nameof(Pdf.File.Hrefs):
@@ -68,7 +72,6 @@ namespace WebScrapperPdf.Pages
                     }
                     break;
             }
-           
         }
     }
 }

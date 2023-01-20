@@ -1,17 +1,32 @@
 ﻿.page {
     display:grid;
-    grid-template-columns: 16em 2fr;
+    grid-template-columns: 1fr;
+    gap:2em;
 }
 object {
   
 }
 embed {
     width: 100%;
-    height: 45em;
+    height: 20em;
 }
 .display-form-true {
     display:block;
 }
 .display-form-false {
     display:none;
+}
+h3 {
+    text-align:center;
+}
+@media only screen and (min-width:1000px) {
+    .page {
+        display: grid;
+        grid-template-columns: 16em 2fr;
+        gap: 2em;
+    }
+    embed {
+        width: 100%;
+        height: 45em;
+    }
 }
